@@ -2,15 +2,19 @@ name := "KafkaMergeApp"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.12.10"
+scalaVersion := "3.1.2"
 
 idePackagePrefix := Some("org.example")
 
-val sparkVersion = "3.1.1"
+val sparkVersion = "3.2.2"
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" %% "spark-core" % sparkVersion,
-  "org.apache.spark" %% "spark-sql" % sparkVersion,
-  "org.apache.spark" %% "spark-mllib" % sparkVersion,
-  "org.apache.spark" %% "spark-streaming" % sparkVersion
+  ("org.apache.spark" %% "spark-core" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-sql" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-mllib" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-streaming" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion).cross(CrossVersion.for3Use2_13),
+  ("org.apache.spark" %% "spark-streaming-kafka-0-10-assembly" % sparkVersion).cross(CrossVersion.for3Use2_13),
 )
+
